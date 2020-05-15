@@ -1,1 +1,5 @@
-<p>drive-contents works!</p>
+
+
+<a *ngFor="let file of files | async">
+  <div class="row py-2 justify-content-center"> {{file.Name}} </div>
+</a>

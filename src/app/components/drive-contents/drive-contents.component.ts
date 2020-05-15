@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { FileManipulationService } from 'src/app/services/file-manipulation.service';
+import { Observable } from 'rxjs';
+import { FileSpecs } from 'src/app/models/fileSpecs';
 
 @Component({
   selector: 'app-drive-contents',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DriveContentsComponent implements OnInit {
 
-  constructor() { }
+  files: Observable<FileSpecs[]>;
+  constructor(private fileService: FileManipulationService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.fileService.getFiles("root")
+      .then((res) => {
+        this.files = res;
+        this.cd.detectChanges();
+      })
   }
+
 
 }
