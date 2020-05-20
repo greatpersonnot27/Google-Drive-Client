@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FileManipulationService } from 'src/app/services/file-manipulation.service';
 import { Observable } from 'rxjs';
 import { FileSpecs } from 'src/app/models/fileSpecs';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-drive-contents',
@@ -10,7 +11,7 @@ import { FileSpecs } from 'src/app/models/fileSpecs';
 })
 export class DriveContentsComponent implements OnInit {
 
-  files: Observable<FileSpecs[]>;
+  files: FileSpecs[];
   constructor(private fileService: FileManipulationService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -21,5 +22,22 @@ export class DriveContentsComponent implements OnInit {
       })
   }
 
+  getfiles(id: string): void {
+    if (id == "root") {
+      this.fileService.getFiles(id).then((res) => {
+        this.files = res;
+        this.cd.detectChanges();
+      })
+    }
+    if (this.files.length != 0 && this.files.find((elem) => elem.ID == id).IsTypeFolder) {
+      this.fileService.getFiles(id).then((res) => {
+        this.files = res;
+        this.cd.detectChanges();
+      })
+    }
+  }
 
+  download(id: string): void {
+    this.fileService.downloadFile(id);
+  }
 }

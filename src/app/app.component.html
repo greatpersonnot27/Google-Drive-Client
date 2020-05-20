@@ -19,19 +19,19 @@
         <div class="form-row" *ngIf="loggedIn===true">
           <div class="form-group col-md-4">
             <label for="firstname">First Name</label>
-            <input type="text" class="form-control" id="firstname" [value]="" readonly>
+            <input type="text" class="form-control" id="firstname" [value]="firstName" readonly>
           </div>
           <div class="form-group col-md-4">
             <label for="lastname">Last Name</label>
-            <input type="text" class="form-control" id="lastname" [value]="" readonly>
+            <input type="text" class="form-control" id="lastname" [value]="surname" readonly>
           </div>
           <div class="form-group col-md-4">
             <label for="email2">Email</label>
-            <input type="text" class="form-control" id="email2" [value]="" readonly>
+            <input type="text" class="form-control" id="email2" [value]="email" readonly>
           </div>
 
           <a routerLink=""><button type="button" (click)="signOut()" class="btn btn-primary">Sign Out</button></a>
-          <a routerLink="/drive"><button type="button" class="btn btn-primary" style="margin-left:30px;">Open Drive</button></a>
+         <button type="button" (click)="openDrive()" class="btn btn-primary" style="margin-left:30px;">Open Drive</button>
         </div>
       </div>
     </div>

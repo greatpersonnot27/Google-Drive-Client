@@ -15,5 +15,16 @@ export class FileSpecs {
     this.IsTypeFolder = file.mimeType === MIME_TYPE_FOLDER;
   }
 
+  get fileSize(): string {
+    if (!this.Size) return " "
+    let size: number = parseInt(this.Size);
+    return (Math.floor(size/(1024*1024))).toString();
+  }
 
+  get fileType(): string {
+    if(this.IsTypeFolder) {
+      return "Folder";
+    }
+    return "File";
+  }
 }

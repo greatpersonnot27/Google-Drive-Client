@@ -1,5 +1,18 @@
-
-
-<a *ngFor="let file of files | async">
-  <div class="row py-2 justify-content-center"> {{file.Name}} </div>
-</a>
+<div class="row py-2 justify-content-center">
+  <table style="width:75%">
+    <tr>
+      <th> Type </th>
+      <th> Name </th>
+      <th> Size </th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let file of files">
+      <td onmouseover="">{{file.fileType}}</td>
+      <td>{{file.Name}}</td>
+      <td>{{file.fileSize}} MB</td>
+    <td class="row_highlight" (click)="getfiles(file.ID)"> open </td>
+      <td (click)="download(file.ID)">Download</td>
+    </tr>
+  </table>
+</div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { UserInfo } from '../models/userInfo';
 
 const CLIENT_ID = "709682704083-i2phfpe3tm0rctq2l9g8vrvtutejm9kf.apps.googleusercontent.com";
 const API_KEY = "AIzaSyBQTjU-9nox8zgRwBiPGi3gF1vc2Er4cmg";
@@ -13,6 +14,7 @@ export class GapiSessionServiceService {
   gAuth: gapi.auth2.GoogleAuth;
   userProfile: gapi.auth2.BasicProfile;
   signedState: Observable<boolean>;
+  userInfo: UserInfo;
 
   constructor() {
     this.signedState = of(false);
@@ -45,11 +47,16 @@ export class GapiSessionServiceService {
     }).then((googleUser: gapi.auth2.GoogleUser) => {
       this.userProfile = googleUser.getBasicProfile();
       this.signedState = of(this.isSignedIn);
+      this.userInfo = new UserInfo(this.userProfile);
     });
   }
 
   signOut(): void {
     this.gAuth.signOut();
+  }
+
+  get UserInfo(): UserInfo{
+    return this.userInfo;
   }
 }
 

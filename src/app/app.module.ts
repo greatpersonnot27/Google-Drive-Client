@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { DriveContentsComponent } from './components/drive-contents/drive-contents.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GapiSessionServiceService } from './services/gapi-session-service.service';
+import { FileManipulationService } from './services/file-manipulation.service';
 
 export function initGapi(gapiSession: GapiSessionServiceService) {
   return () => gapiSession.initClient();
