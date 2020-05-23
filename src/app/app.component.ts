@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   firstName: string;
   surname: string;
   email: string;
-  constructor(private fb: FormBuilder, private gapService: GapiSessionServiceService,private ngZone: NgZone, private router: Router, private cd: ChangeDetectorRef, private fileservice: FileManipulationService) { }
+  constructor(private fb: FormBuilder, private gapService: GapiSessionServiceService, private ngZone: NgZone, private router: Router, private cd: ChangeDetectorRef, private fileservice: FileManipulationService) { }
 
   ngOnInit() {
     this.signinForm = this.fb.group({
@@ -62,7 +62,9 @@ export class AppComponent implements OnInit {
   openDrive(): void {
     this.fileservice.getFiles("root");
     this.ngZone.run(() => this.router.navigate(['/drive']).then((res) => {
-      this.cd.detectChanges();}
+      this.cd.detectChanges();
+    }
     ))
   }
+
 }

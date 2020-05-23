@@ -1,4 +1,5 @@
 <div class="row py-2 justify-content-center">
+  <input type="file" (change)="uploadFile($event)">
   <table style="width:75%">
     <tr>
       <th> Type </th>
@@ -12,7 +13,8 @@
       <td>{{file.Name}}</td>
       <td>{{file.fileSize}} MB</td>
     <td class="row_highlight" (click)="getfiles(file.ID)"> open </td>
-      <td (click)="download(file.ID)">Download</td>
+      <td class="row_highlight" (click)="download(file.ID)">Download</td>
     </tr>
   </table>
+  <button type="button" (click)="goBack()" class="btn btn-primary" style="margin-left:30px;">Go back</button>
 </div>
